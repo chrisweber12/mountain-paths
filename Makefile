@@ -1,4 +1,4 @@
-make : main.cpp functions.cpp functions.h
+make : main.cpp functions.cpp functions.hpp
 	g++ -std=c++11 -o Mountain-Paths.exe main.cpp functions.cpp
 run:
 	./Mountain-Paths.exe
