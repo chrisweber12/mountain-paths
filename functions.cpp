@@ -12,7 +12,7 @@ int colorPath(
 	int color_r,
 	int color_g,
 	int color_b,
-	int start_row`
+	int start_row
 ) {
 
 	int dist = 0;
