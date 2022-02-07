@@ -17,7 +17,6 @@ int main()
 
 	cout << "Input file path: ";
 	cin >> inFileName;
-
 	outFileName = inFileName + ".ppm";
 
 	ifstream fileIn{inFileName};
@@ -26,6 +25,7 @@ int main()
 	int rowNum = 0;
 	int columnNum = 0;
 	int num;
+	// max and min to determine boundaries for grayscale
 	int min = 99999999;
 	int max = -min;
 
@@ -34,12 +34,15 @@ int main()
 		exit(1);
 	}
 
+	// Get from first two integers in fileIn
 	fileIn >> numRows;
 	fileIn >> numColumns;
 
+	// dataVect from fileIn and grayVect for grayscale pixels in .ppm file
 	vector<vector<int>> dataVect(numRows);
 	vector<vector<int>> grayVect(numRows);
 
+	// Populate dataVect
 	while (fileIn >> num) {
 		if (num > max) max = num;
 		if (num < min) min = num;
@@ -57,8 +60,10 @@ int main()
 		}
 	}
 
+	// Write constraints to fileOut
 	fileOut << "P3" << endl << numColumns << " " << numRows << endl << 255 << endl;
 
+	// Populate grayVect with dataVect values scaled to 255 max (PPM specs)
 	int shade;
 	for (int row=0; row<numRows; row++) {
 		for (int column=0; column<numColumns; column++) {
@@ -67,13 +72,14 @@ int main()
 		}
 	}
 
+	// These 3 vectors will output to the file in grayscale except for pixels changed below
 	vector<vector<int>> redVect = grayVect;
 	vector<vector<int>> greenVect = grayVect;
 	vector<vector<int>> blueVect = grayVect;
 
+	// Color all paths red, save shortest path
 	int shortest = 999999999;
 	int shortest_index = 0;
-
 	for (int row = 0; row<grayVect.size(); row++) {
 		int dist = colorPath(dataVect, redVect, greenVect, blueVect, 252, 25, 63, row);
 		if (dist < shortest) {
@@ -82,8 +88,10 @@ int main()
 		}
 	}
 
+	// Color shortes path green
 	colorPath(dataVect, redVect, greenVect, blueVect, 31, 253, 13, shortest_index);
 
+	// Write all pixels RGB values to fileOut .ppm file
 	for (int row=0; row<numRows; row++) {
 		for (int column=0; column<numColumns; column++) {
 			fileOut << redVect.at(row).at(column) << " " << greenVect.at(row).at(column) << " " << blueVect.at(row).at(column) << " ";
