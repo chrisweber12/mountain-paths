@@ -4,7 +4,7 @@ Program that can take in data representing mountain heights and visualize the be
 
 ### Usage
 
-Running the command `make` within the project directory will compile the executable *mountain-paths.exe*. Running `make run` will run the program, and running `make clean` will remove *mountain-paths.exe* and any output *.ppm* files. When prompted for a file path, 5 example files are provided within *Example-Data*, so `Example-Data/#.dat` can be entered, with # being an integer 1-5. Alternatively, another filepath can be used, provided it fits the constraints shown [below](#input). The output will be a .ppm (Portable Pixel Map) file in the same location as the input file, which will be a greyscale representation of the data with red paths shown from left to right across the image, one starting at the leftmost pixel in each row. The [best overall path](#algorithm) will be colored green.
+Running the command `make` within the project directory will compile the executable *mountain-paths.exe*. Running `make run` will run the program, and running `make clean` will remove *mountain-paths.exe* and any output *.ppm* files. When prompted for a file path, 5 example files are provided within *example-data*, so `example-data/#.dat` can be entered, with # being an integer 1-5. Alternatively, another filepath can be used, provided it fits the constraints shown [below](#input). The output will be a .ppm (Portable Pixel Map) file in the same location as the input file, which will be a greyscale representation of the data with red paths shown from left to right across the image, one starting at the leftmost pixel in each row. The [best overall path](#algorithm) will be colored green.
 
 ### Specifics
 
